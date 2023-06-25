@@ -12,7 +12,7 @@ package app.cursos.techcenter.test;
 public class Prueba0 {
 
     public static void main(String[] args) {
-        
+        System.out.println("Prueba de subida");
     }
 
 }
