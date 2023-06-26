@@ -1,37 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ * @author Yber-M;
  */
 package app.cursos.techcenter.model;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Marcia
- */
 public class Alumno {
     private int idAlumno;
-    private String nombre; 
-    private String direccion; 
-    private String telefono; 
-    private String email; 
+    private String nombre;
+    private String direccion;
+    private String telefono;
+    private String email;
     private Cursos curso;
     private ArrayList<Pago> pagos = new ArrayList<>();
 
     public Alumno() {
     }
 
-    public Alumno(int idAlumno, String nombre, String direccion, String telefono, String email, Cursos curso, ArrayList<Pago> pagos) {
+    public Alumno(int idAlumno, String nombre, String direccion, String telefono, String email, Cursos curso) {
         this.idAlumno = idAlumno;
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
         this.curso = curso;
-        this.pagos = pagos;
     }
-    
 
     public int getIdAlumno() {
         return idAlumno;
@@ -40,7 +33,7 @@ public class Alumno {
     public void setIdAlumno(int idAlumno) {
         this.idAlumno = idAlumno;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -72,6 +65,22 @@ public class Alumno {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Cursos getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Cursos curso) {
+        this.curso = curso;
+    }
+
+    public ArrayList<Pago> getPagos() {
+        return pagos;
+    }
+
+    public void setPagos(ArrayList<Pago> pagos) {
+        this.pagos = pagos;
+    }
     
-    
+
 }
