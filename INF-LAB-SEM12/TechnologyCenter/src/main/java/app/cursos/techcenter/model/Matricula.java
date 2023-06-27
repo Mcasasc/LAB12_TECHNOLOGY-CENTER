@@ -1,37 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.cursos.techcenter.model;
 
-/**
- *
- * @author Marcia
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Matricula {
+
     private String tipoMatricula;
-    private String fechaMatricula;
+    private String fecha;
     private double precio;
     private int numCuotas;
-    private int nota;
-    private Empleado empleado;
+    private double deuda;
+    private String estado;
+    private List<Pago> pagos;
     private Cursos curso;
     private Alumno alumno;
 
-    public Matricula() {
-    }
-
-    public Matricula(String tipoMatricula, String fechaMatricula, double precio, int numCuotas, int nota, Empleado empleado, Cursos curso, Alumno alumno) {
+    public Matricula(String tipoMatricula, String fecha, double precio, int numCuotas, double deuda, String estado, Cursos curso, Alumno alumno) {
         this.tipoMatricula = tipoMatricula;
-        this.fechaMatricula = fechaMatricula;
+        this.fecha = fecha;
         this.precio = precio;
         this.numCuotas = numCuotas;
-        this.nota = nota;
-        this.empleado = empleado;
+        this.deuda = deuda;
+        this.estado = estado;
+        this.pagos = new ArrayList<>();
         this.curso = curso;
         this.alumno = alumno;
     }
 
+    // Getters y setters
     public String getTipoMatricula() {
         return tipoMatricula;
     }
@@ -40,12 +36,12 @@ public class Matricula {
         this.tipoMatricula = tipoMatricula;
     }
 
-    public String getFechaMatricula() {
-        return fechaMatricula;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setFechaMatricula(String fechaMatricula) {
-        this.fechaMatricula = fechaMatricula;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
     public double getPrecio() {
@@ -64,20 +60,20 @@ public class Matricula {
         this.numCuotas = numCuotas;
     }
 
-    public int getNota() {
-        return nota;
+    public double getDeuda() {
+        return deuda;
     }
 
-    public void setNota(int nota) {
-        this.nota = nota;
+    public void setDeuda(double deuda) {
+        this.deuda = deuda;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public List<Pago> getPagos() {
+        return pagos;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
     }
 
     public Cursos getCurso() {
@@ -95,6 +91,21 @@ public class Matricula {
     public void setAlumno(Alumno alumno) {
         this.alumno = alumno;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     
-    
+    public String ImprimirTest() {
+        return """
+               - - - Datos del Estudiante - - -
+               Alumno: """ + alumno.getNombre() + "\nCel:" + alumno.getTelefono() +
+               "\nEmail:" + alumno.getEmail() + "\nDireccion:" + alumno.getDireccion()
+                + "\n- - - Datos del Pago - - - \nCurso: " + curso.getNombre() ;
+    }
+
 }

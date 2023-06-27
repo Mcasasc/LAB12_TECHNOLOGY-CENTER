@@ -73,6 +73,11 @@ public class FrmEmpleadosView extends javax.swing.JFrame {
         btnAgregarEmpleado.setBackground(new java.awt.Color(153, 255, 153));
         btnAgregarEmpleado.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarEmpleado.setText("AGREGAR EMPLEADO");
+        btnAgregarEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEmpleadoActionPerformed(evt);
+            }
+        });
 
         btnEliminarEmpleado.setBackground(new java.awt.Color(255, 102, 102));
         btnEliminarEmpleado.setForeground(new java.awt.Color(0, 0, 0));
@@ -174,6 +179,10 @@ public class FrmEmpleadosView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarEmpleadoActionPerformed
 
     public static void main(String args[]) {
         try {

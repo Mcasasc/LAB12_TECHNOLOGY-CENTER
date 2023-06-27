@@ -73,6 +73,11 @@ public class FrmCursosView extends javax.swing.JFrame {
         btnAgregarCurso.setBackground(new java.awt.Color(153, 255, 153));
         btnAgregarCurso.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarCurso.setText("AGREGAR CURSO");
+        btnAgregarCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCursoActionPerformed(evt);
+            }
+        });
 
         btnEliminarCurso.setBackground(new java.awt.Color(255, 102, 102));
         btnEliminarCurso.setForeground(new java.awt.Color(0, 0, 0));
@@ -156,6 +161,10 @@ public class FrmCursosView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAgregarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarCursoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

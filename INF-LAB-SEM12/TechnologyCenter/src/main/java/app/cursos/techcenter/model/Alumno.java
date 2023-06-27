@@ -1,9 +1,7 @@
-/**
- * @author Yber-M;
- */
 package app.cursos.techcenter.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Alumno {
     private int idAlumno;
@@ -12,9 +10,10 @@ public class Alumno {
     private String telefono;
     private String email;
     private Cursos curso;
-    private ArrayList<Pago> pagos = new ArrayList<>();
+    private List<Pago> pagos;
 
     public Alumno() {
+        pagos = new ArrayList<>();
     }
 
     public Alumno(int idAlumno, String nombre, String direccion, String telefono, String email, Cursos curso) {
@@ -24,8 +23,13 @@ public class Alumno {
         this.telefono = telefono;
         this.email = email;
         this.curso = curso;
+        pagos = new ArrayList<>();
     }
 
+    public void setPagos(List<Pago> pagos) {
+        this.pagos = pagos;
+    }
+    
     public int getIdAlumno() {
         return idAlumno;
     }
@@ -74,13 +78,7 @@ public class Alumno {
         this.curso = curso;
     }
 
-    public ArrayList<Pago> getPagos() {
+    public List<Pago> getPagos() {
         return pagos;
     }
-
-    public void setPagos(ArrayList<Pago> pagos) {
-        this.pagos = pagos;
-    }
-    
-
 }

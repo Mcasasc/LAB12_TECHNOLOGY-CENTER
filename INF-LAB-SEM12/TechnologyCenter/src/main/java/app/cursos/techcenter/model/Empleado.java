@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package app.cursos.techcenter.model;
 
 /**
@@ -9,27 +5,14 @@ package app.cursos.techcenter.model;
  * @author Marcia
  */
 public class Empleado {
-    int idEmpleado;
-    String apellido;
-    String nombre;
-    String direccion;
-    String email;
-    String usuario;
-    String contrasena;
+    private int idEmpleado;
+    private String apellido;
+    private String nombre;
+    private String direccion;
+    private String email;
+    private String usuario;
+    private String contrasena;
 
-    public Empleado() {
-    }
-
-    public Empleado(int idEmpleado, String apellido, String nombre, String direccion, String email, String usuario, String contrasena) {
-        this.idEmpleado = idEmpleado;
-        this.apellido = apellido;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.email = email;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-    }
-    
     public int getIdEmpleado() {
         return idEmpleado;
     }
@@ -85,6 +68,5 @@ public class Empleado {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    
     
 }
