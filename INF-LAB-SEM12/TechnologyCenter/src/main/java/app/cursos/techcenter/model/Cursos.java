@@ -1,6 +1,3 @@
-/**
- * @author Yber-M;
- */
 package app.cursos.techcenter.model;
 
 public class Cursos {
@@ -12,6 +9,9 @@ public class Cursos {
     private String profesor;
     private double precio;
 
+    public Cursos() {
+    }
+    
     public Cursos(int idCurso, String nombre, int num_vacantes, int num_matriculados, String profesor, double precio) {
         this.idCurso = idCurso;
         this.nombre = nombre;
@@ -68,7 +68,4 @@ public class Cursos {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
-    
-    
-
 }

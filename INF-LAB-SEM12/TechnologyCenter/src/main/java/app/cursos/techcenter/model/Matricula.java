@@ -1,33 +1,63 @@
 package app.cursos.techcenter.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Matricula {
-
+    String NombreCurso;
+    private int idCurso;
+    private int idAlumno;
+    private int idEmpleado;
     private String tipoMatricula;
     private String fecha;
     private double precio;
     private int numCuotas;
-    private double deuda;
-    private String estado;
-    private List<Pago> pagos;
-    private Cursos curso;
-    private Alumno alumno;
+    private int nota;
 
-    public Matricula(String tipoMatricula, String fecha, double precio, int numCuotas, double deuda, String estado, Cursos curso, Alumno alumno) {
+    public Matricula() {
+    }
+
+    public Matricula(int idCurso, int idAlumno, int idEmpleado, String tipoMatricula, String fecha, double precio, int numCuotas, int nota) {
+        this.idCurso = idCurso;
+        this.idAlumno = idAlumno;
+        this.idEmpleado = idEmpleado;
         this.tipoMatricula = tipoMatricula;
         this.fecha = fecha;
         this.precio = precio;
         this.numCuotas = numCuotas;
-        this.deuda = deuda;
-        this.estado = estado;
-        this.pagos = new ArrayList<>();
-        this.curso = curso;
-        this.alumno = alumno;
+        this.nota = nota;
+    }
+    
+    // Getters y setters
+    public String getNombreCurso() {
+        return NombreCurso;
     }
 
-    // Getters y setters
+    public void setNombreCurso(String NombreCurso) {
+        this.NombreCurso = NombreCurso;
+    }
+
+    public int getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
+
+    public int getIdAlumno() {
+        return idAlumno;
+    }
+
+    public void setIdAlumno(int idAlumno) {
+        this.idAlumno = idAlumno;
+    }
+
+    public int getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+
     public String getTipoMatricula() {
         return tipoMatricula;
     }
@@ -60,52 +90,11 @@ public class Matricula {
         this.numCuotas = numCuotas;
     }
 
-    public double getDeuda() {
-        return deuda;
+    public int getNota() {
+        return nota;
     }
 
-    public void setDeuda(double deuda) {
-        this.deuda = deuda;
+    public void setNota(int nota) {
+        this.nota = nota;
     }
-
-    public List<Pago> getPagos() {
-        return pagos;
-    }
-
-    public void setPagos(List<Pago> pagos) {
-        this.pagos = pagos;
-    }
-
-    public Cursos getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Cursos curso) {
-        this.curso = curso;
-    }
-
-    public Alumno getAlumno() {
-        return alumno;
-    }
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-    
-    public String ImprimirTest() {
-        return """
-               - - - Datos del Estudiante - - -
-               Alumno: """ + alumno.getNombre() + "\nCel:" + alumno.getTelefono() +
-               "\nEmail:" + alumno.getEmail() + "\nDireccion:" + alumno.getDireccion()
-                + "\n- - - Datos del Pago - - - \nCurso: " + curso.getNombre() ;
-    }
-
 }

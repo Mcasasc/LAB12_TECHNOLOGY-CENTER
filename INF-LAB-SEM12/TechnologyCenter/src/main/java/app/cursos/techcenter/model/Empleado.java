@@ -1,9 +1,5 @@
 package app.cursos.techcenter.model;
 
-/**
- *
- * @author Marcia
- */
 public class Empleado {
     private int idEmpleado;
     private String apellido;
@@ -11,8 +7,21 @@ public class Empleado {
     private String direccion;
     private String email;
     private String usuario;
-    private String contrasena;
-
+    private String contraseña;
+    
+    public Empleado(){
+    }
+    
+    public Empleado(int idEmpleado, String apellido, String nombre, String direccion, String email, String usuario, String contraseña) {
+        this.idEmpleado = idEmpleado;
+        this.apellido = apellido;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.email = email;
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+    
     public int getIdEmpleado() {
         return idEmpleado;
     }
@@ -61,12 +70,11 @@ public class Empleado {
         this.usuario = usuario;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContraseña(String contrasena) {
+        this.contraseña = contrasena;
     }
-    
 }

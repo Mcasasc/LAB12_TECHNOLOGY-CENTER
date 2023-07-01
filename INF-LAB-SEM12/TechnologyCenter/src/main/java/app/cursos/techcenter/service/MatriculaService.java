@@ -1,89 +1,57 @@
 package app.cursos.techcenter.service;
 
-import app.cursos.techcenter.model.Alumno;
-import app.cursos.techcenter.model.Cursos;
+import app.cursos.techcenter.database.AccesoDB;
 import app.cursos.techcenter.model.Matricula;
-import app.cursos.techcenter.model.Pago;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
 
 public class MatriculaService {
 
-    private List<Matricula> matriculas = new ArrayList<>();
+    public CursoService cursoService = new CursoService();
+    public AlumnoService alumnoService = new AlumnoService();
+    public EmpleadoService empleadoService = new EmpleadoService();
 
-    public void matricularAlumno(Alumno alumno, Cursos curso, String tipoMatricula, double descuento, int numCuotas) {
-        double precioCurso = curso.getPrecio();
-        if (descuento > 0) {
-            precioCurso -= descuento;
-        }
+    public Matricula registrarMatricula(Matricula matricula) throws SQLException {
+        try (Connection cn = AccesoDB.getConnection()) {
+            // Obtener el ID del curso a partir del nombre del curso
+            int idCurso = cursoService.obtenerCursoPorNombre(matricula.getNombreCurso()).getIdCurso();
 
-        Matricula matricula = new Matricula(tipoMatricula, obtenerFechaActual(), precioCurso, numCuotas, 0, null, curso, alumno);
-        matricula.setPagos(new ArrayList<>()); // Inicializar la lista de pagos
-        matriculas.add(matricula);
-        alumno.setCurso(curso);
+            // Obtener el ID del alumno a partir del ID del alumno
+            int idAlumno = alumnoService.obtenerAlumnoPorId(matricula.getIdAlumno()).getIdAlumno();
 
-        if (numCuotas == obtenerNumeroCuotas(tipoMatricula)) {
-            // Pago en una sola cuota
-            registrarPago(matricula, obtenerFechaActual(), precioCurso);
-        } else {
-            for (int cuota = obtenerNumeroCuotas(tipoMatricula); cuota <= numCuotas; cuota++) {
-                System.out.println("Cuota: " + cuota);
+            // Obtener el ID del empleado a partir del ID del empleado
+            int idEmpleado = empleadoService.ObtEmpleadoporUsuario();
+
+            // Obtener la fecha y hora actual utilizando la función de SQL
+            String fecha = obtenerFechaActual(cn);
+
+            // Insertar la nueva matrícula en la base de datos
+            String sql = "INSERT INTO dbo.MATRICULA (cur_id, alu_id, emp_id, mat_tipo, mat_fecha, mat_precio, mat_cuotas, mat_nota) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = cn.prepareStatement(sql)) {
+                pstmt.setInt(1, idCurso);
+                pstmt.setInt(2, idAlumno);
+                pstmt.setInt(3, idEmpleado);
+                pstmt.setString(4, matricula.getTipoMatricula());
+                pstmt.setString(5, fecha);
+                pstmt.setDouble(6, matricula.getPrecio());
+                pstmt.setInt(7, matricula.getNumCuotas());
+                pstmt.setInt(8, matricula.getNota());
+
+                // Ejecutar la sentencia de inserción
+                pstmt.executeUpdate();
             }
         }
+        return matricula;
     }
 
-    public List<Matricula> consultarMatriculasPorCurso(Cursos curso) {
-        List<Matricula> matriculasPorCurso = new ArrayList<>();
-        for (Matricula matricula : matriculas) {
-            if (matricula.getCurso().equals(curso)) {
-                matriculasPorCurso.add(matricula);
+    private String obtenerFechaActual(Connection connection) throws SQLException {
+        String fechaActual = null;
+        String sql = "SELECT GETDATE() AS fechaActual";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()) {
+                fechaActual = resultSet.getString("fechaActual");
             }
         }
-        return matriculasPorCurso;
-    }
-
-    public void registrarPago(Matricula matricula, String fechaPago, double importePago) {
-        Pago pago = new Pago(fechaPago, importePago);
-        matricula.getPagos().add(pago);
-        actualizarEstadoMatricula(matricula);
-    }
-
-    public double calcularDeuda(Matricula matricula) {
-        double totalPagado = 0;
-        for (Pago pago : matricula.getPagos()) {
-            totalPagado += pago.getImportePago();
-        }
-        return matricula.getPrecio() - totalPagado;
-    }
-
-    private void actualizarEstadoMatricula(Matricula matricula) {
-        double deuda = calcularDeuda(matricula);
-        if (deuda == 0) {
-            matricula.setEstado("Pagado");
-        } else if (deuda == matricula.getPrecio()) {
-            matricula.setEstado("Pendiente");
-        } else {
-            matricula.setEstado("Parcialmente Pagado");
-        }
-    }
-
-    private int obtenerNumeroCuotas(String tipoMatricula) {
-        switch (tipoMatricula) {
-            case "1":
-                return 1;
-            case "2":
-                return 2;
-            case "3":
-                return 3;
-            default:
-                return 0;
-        }
-    }
-
-    private String obtenerFechaActual() {
-        LocalDate fechaActual = LocalDate.now();
-        return fechaActual.toString();
+        return fechaActual;
     }
 }
